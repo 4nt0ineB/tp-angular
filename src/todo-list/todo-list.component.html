@@ -1,0 +1,25 @@
+<div>
+  <p *ngIf="remainingTasks(); let left">{{ left }} tasks remaining</p>
+</div>
+<ul>
+  <li *ngFor="let todo of todos; index as i">
+    <div
+      [ngClass]="{ 'todo-done': todo.done == true }"
+      (click)="updateTodoState(i)"
+      class="bop todo-element"
+    >
+      {{ todo.label }}
+    </div>
+  </li>
+</ul>
+<div>
+  <label name="label">
+    New task
+    <input
+      type="text"
+      [(ngModel)]="tmpInput"
+      name="label"
+      (keyup.enter)="addTodo()"
+    />
+  </label>
+</div>
