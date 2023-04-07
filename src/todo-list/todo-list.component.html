@@ -1,25 +1,36 @@
-<div>
-  <p *ngIf="remainingTasks(); let left">{{ left }} tasks remaining</p>
-</div>
-<ul>
-  <li *ngFor="let todo of todos; index as i">
-    <div
-      [ngClass]="{ 'todo-done': todo.done == true }"
-      (click)="updateTodoState(i)"
-      class="bop todo-element"
-    >
-      {{ todo.label }}
+<div class="container">
+  <div class="row">
+    <div *ngFor="let todo of todos; index as i">
+      <todo-item
+        [label]="todo.label"
+        [state]="todo.done"
+        [index]="i"
+        (newTodoItemEvent)="updateTodoState($event)"
+        (updateLabelEvent)="updateTodoLabel($event)"
+      >
+      </todo-item>
     </div>
-  </li>
-</ul>
-<div>
-  <label name="label">
-    New task
-    <input
-      type="text"
-      [(ngModel)]="tmpInput"
-      name="label"
-      (keyup.enter)="addTodo()"
-    />
-  </label>
+  </div>
+
+  <div>
+    <label name="label">
+      New task
+      <input
+        type="text"
+        [(ngModel)]="textInput"
+        name="label"
+        (keyup.enter)="addTodo()"
+      />
+    </label>
+
+    <button
+      class="btn waves-effect waves-light"
+      type="submit"
+      name="action"
+      (click)="addTodo()"
+    >
+      Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
 </div>

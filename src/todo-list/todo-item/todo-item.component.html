@@ -1,0 +1,36 @@
+<div class="col s4">
+  <div
+    class="card"
+    [ngClass]="{
+      'main-div grey lighten-2': state,
+      'blue-grey darken-3  white-text': !state
+    }"
+  >
+    <div class="card-content">
+      <span class="card-title">
+        <div *ngIf="editMode; else elseBlock">
+          <div>
+            <label name="label">
+              New task
+              <input
+                type="text"
+                name="label"
+                [(ngModel)]="label"
+                (keyup.enter)="updateLabel()"
+              />
+            </label>
+          </div>
+        </div>
+        <ng-template #elseBlock> {{ label }} </ng-template>
+        <div *ngIf="editMode == false">
+          <i class="material-icons right" (click)="changeEditMode()">edit</i>
+        </div>
+      </span>
+    </div>
+    <div class="card-action">
+      <a href="#" (click)="changeItemState()">
+        {{ state ? 'done' : 'undone' }}</a
+      >
+    </div>
+  </div>
+</div>
