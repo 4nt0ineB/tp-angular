@@ -1,3 +1,3 @@
-# angular-TP5
+# angular-tp6
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-gcfznf)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ahoeyr)

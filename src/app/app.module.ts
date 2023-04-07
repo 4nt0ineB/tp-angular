@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TodoFormComponent } from './todo-list/todo-form/todo-form.component';
+import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -18,6 +21,7 @@ import { TodoFormComponent } from './todo-list/todo-form/todo-form.component';
     HttpClientModule,
     CommonModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
@@ -25,6 +29,7 @@ import { TodoFormComponent } from './todo-list/todo-form/todo-form.component';
     CustomDatePipe,
     TodoListComponent,
     TodoItemComponent,
+    LoginComponent,
   ],
   bootstrap: [AppComponent],
 })

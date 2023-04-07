@@ -4,6 +4,9 @@
   style="padding: 1em; padding-top: 10em;"
 >
   <div class="row">
+    <h2>
+      <div style="text-align:center;">{{ username }}</div>
+    </h2>
     <todo-form (newLabelEvent)="addTodo($event)"></todo-form>
   </div>
   <div class="row">

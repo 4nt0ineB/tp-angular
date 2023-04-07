@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app',
-  template: '<app-todo-list></app-todo-list>',
+  templateUrl: 'app.component.html',
 })
 export class AppComponent {}

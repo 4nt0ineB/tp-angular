@@ -1,0 +1,52 @@
+<div class="row" style="text-align: center; margin: 2em;">
+  <form #f="ngForm" (ngSubmit)="submit(f)" (keydown.enter)="submit(f)">
+    <div class="row" style="text-align: center; margin: 2em;">
+      <div class="input-field">
+        <i class="material-icons prefix">account_circle</i>
+        <input
+          id="Login"
+          type="text"
+          name="Login"
+          minlength="3"
+          maxlength="20"
+          pattern="^[a-zA-Z0-9àáâäãåèéêëìíîïòóôöõùúûüýÿ\s]*$"
+          #vlogin="ngModel"
+          required
+          autocomplete="off"
+          [(ngModel)]="login"
+          [ngClass]="{ invalid: vlogin.dirty && vlogin.invalid }"
+        />
+        <label for="label">Login</label>
+        <p
+          class="right"
+          style="color: grey; font-size: 0.8em;"
+          [style.color]="vlogin.dirty && vlogin.invalid ? 'red' : 'grey'"
+        >
+          {{ !vlogin.dirty ? 0 : vlogin.value.length }}/20
+        </p>
+      </div>
+
+      <div
+        *ngIf="vlogin.dirty && vlogin.invalid"
+        style="color: red; text-align:left"
+      >
+        <div *ngIf="vlogin.errors.required">Champs requis</div>
+        <div *ngIf="vlogin.errors.pattern">
+          Le label ne doit contenir que des caractères alphanumériques
+        </div>
+        <div *ngIf="vlogin.errors.minlength">Label trop petit</div>
+      </div>
+    </div>
+
+    <button
+      class="btn waves-effect waves-light"
+      type="submit"
+      name="action"
+      style="margin-bottom: 3em;"
+      [disabled]="f.invalid"
+    >
+      Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
