@@ -26,6 +26,8 @@ export class TodoItemComponent implements OnInit {
   todo: Todo;
   @Output()
   updateLabelEvent = new EventEmitter<Todo>();
+  @Output()
+  deleteTodoEvent = new EventEmitter<Todo>();
 
   /**
    * Change the state in the todo item of
@@ -43,6 +45,10 @@ export class TodoItemComponent implements OnInit {
 
   changeEditMode(): void {
     this.editMode = !this.editMode;
+  }
+
+  delete(): void {
+    this.deleteTodoEvent.emit(this.todo);
   }
 
   ngOnInit() {}

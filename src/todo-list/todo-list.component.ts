@@ -1,81 +1,68 @@
 declare var M: any;
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LocalisationService } from './localisation.service';
+import { FormsModule } from '@angular/forms';
 import { Todo } from './model/todo';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import { TodoService } from './todo.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { DOCUMENT } from '@angular/common';
-import { FormBuilder } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
-  imports: [CommonModule, FormsModule, TodoItemComponent, ReactiveFormsModule],
-  providers: [TodoService, LocalisationService],
+  imports: [CommonModule, FormsModule, TodoItemComponent, HttpClientModule],
+  providers: [TodoService],
   standalone: true,
 })
 export class TodoListComponent implements OnInit {
   public textInput: string;
-  public form: any;
+  todos: Todo[] = [];
+  loaded: boolean = true;
 
-  constructor(
-    public todoService: TodoService,
-    public localisationService: LocalisationService,
-    private formBuilder: FormBuilder
-  ) {
+  constructor(public todoService: TodoService) {
     this.todoService = todoService;
-    this.localisationService = localisationService;
   }
 
   updateTodo(todo: Todo): void {
-    this.todoService.updateTodo(todo);
-    M.toast({ html: 'Mise à jour effectuée' });
+    this.todoService.updateTodo(todo).subscribe((response) => {
+      if (response) {
+        M.toast({ html: 'Mise à jour effectuée' });
+        this.getTodos();
+      }
+    });
   }
 
   addTodo(): void {
-    if (this.form.valid) {
-      this.todoService.createTodo(this.form.value.label, this.form.value.city);
-      M.toast({
-        html: "La tâche '" + this.form.value.label + "' à été ajouté",
-      });
-      this.form.reset();
-
-      this.localisationService.addCity(this.form.value.label);
-      this.updateCities();
-      return;
-    }
+    if (!this.textInput) return;
+    this.todoService.createTodo(this.textInput).subscribe((response) => {
+      if (response) {
+        M.toast({ html: "La tâche '" + this.textInput + "' à été ajouté" });
+        this.textInput = '';
+        this.getTodos();
+      }
+    });
   }
 
-  updateCities() {
-    let data = {};
-    this.localisationService.searchCity('').forEach((c) => {
-      data[c.toString()] = null;
+  private getTodos(): void {
+    this.todoService.getTodos().subscribe((response: Todo[]) => {
+      this.todos = response;
+      this.loaded = true;
     });
+  }
 
-    let elems = document.querySelectorAll('.autocomplete');
-    M.Autocomplete.getInstance(elems)?.instance.destroy();
-
-    M.Autocomplete.init(elems, {
-      data: data,
+  deleteTodo(todo: Todo): void {
+    this.todoService.deleteTodo(todo.id).subscribe((response) => {
+      if (response) {
+        M.toast({
+          html: "La tâche '" + todo.label.slice(20) + "' à été supprimé",
+        });
+        this.getTodos();
+      }
     });
   }
 
   ngOnInit() {
-    //console.log(this.cities);
-    this.form = this.formBuilder.group(
-      {
-        label: new FormControl('', [
-          Validators.required,
-          Validators.minLength(1),
-        ]),
-        city: new FormControl('', Validators.required),
-      },
-      { updateOn: 'submit' }
-    );
-    this.updateCities();
+    this.getTodos();
   }
 }

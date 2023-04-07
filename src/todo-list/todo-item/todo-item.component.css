@@ -1,8 +1,15 @@
 a {
-  cursor: default;
+  cursor: pointer;
 }
 
-/* .main-div > div {
-  background-color: rgb(163, 163, 163);
+.material-icons {
+  cursor: pointer;
 }
- */
+
+#update:hover {
+  color: orange;
+}
+
+#delete:hover {
+  color: rgb(192, 34, 34);
+}

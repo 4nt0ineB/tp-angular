@@ -1,7 +1,6 @@
 export interface Todo {
   label: String;
   done: boolean;
-  id: number;
+  id: string;
   creationDate: number;
-  city: string;
 }

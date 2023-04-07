@@ -1,47 +1,41 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from './model/todo';
+import { catchError, from, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TodoService {
-  public todos: Todo[] = [];
+  private TodoUrl =
+    'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo';
 
-  constructor() {
-    let savedTodos = localStorage.getItem('todos');
-    if (savedTodos != null) {
-      this.todos = JSON.parse(savedTodos);
-      console.log(JSON.parse(savedTodos));
-    }
+  constructor(private http: HttpClient) {}
+
+  getTodos(): Observable<Todo[]> {
+    return this.http
+      .get<Todo[]>(this.TodoUrl)
+      .pipe(map((result: any) => result.todos));
   }
 
-  saveTodos() {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
+  createTodo(label: string): Observable<boolean> {
+    if (!label) return of(false);
+    return this.http.post<boolean>(this.TodoUrl, { label: label }).pipe(
+      map((x) => true),
+      catchError((e) => of(false))
+    );
   }
 
-  getTodos(): Todo[] {
-    return this.todos;
+  updateTodo(todo: Todo): Observable<boolean> {
+    return this.http.put<boolean>(this.TodoUrl + '/' + todo.id, todo).pipe(
+      map((x) => true),
+      catchError((e) => of(false))
+    );
   }
 
-  createTodo(label: string, city: string): void {
-    if (!label) return;
-    this.todos.push({
-      id: Math.floor(Math.random() * 1000),
-      creationDate: new Date().valueOf(),
-      label: label,
-      done: false,
-      city: city,
-    });
-    this.saveTodos();
-  }
-
-  updateTodo(todo: Todo): void {
-    let i = this.todos.findIndex((t) => t.id == todo.id);
-    if (i == -1) {
-      console.warn('Todo of id : ' + todo.id + " couldn't be found");
-      return;
-    }
-    this.todos[i] = todo;
-    this.saveTodos();
+  deleteTodo(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.TodoUrl + '/' + id).pipe(
+      map((x) => true),
+      catchError((e) => of(false))
+    );
   }
 }
