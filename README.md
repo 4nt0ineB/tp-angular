@@ -9,7 +9,7 @@ Voir sur StackBlitz [:globe_with_meridians:](https://stackblitz.com/edit/angular
 | 0  | Typescript | [:page_with_curl:][tp0e] | [:notebook:][tp0c]
 | 1  | Introduction à Angular et ses composants | [:page_with_curl:][tp1e] | [:notebook:][tp1c]
 | 2  | Communication père/fils   | [:page_with_curl:][tp2e] | [:notebook:][tp2c]
-| 3  | services & pipes | [:page_with_curl:][tp3e] | [:notebook:][tp3c]
+| 3  | Services & pipes | [:page_with_curl:][tp3e] | [:notebook:][tp3c]
 | 4  | Programmation réactive (Observable/Observer) | [:page_with_curl:][tp4e] | [:notebook:][tp4c]
 | 5  | Formulaires | [:page_with_curl:][tp5e] | [:notebook:][tp5c]
 | allocine | Mise en pratique de toutes les notions | [:page_with_curl:][tpae] |
