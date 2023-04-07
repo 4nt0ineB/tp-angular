@@ -1,36 +1,37 @@
 <div class="container">
   <div class="row">
-    <div *ngFor="let todo of todos; index as i">
-      <todo-item
-        [label]="todo.label"
-        [state]="todo.done"
-        [index]="i"
-        (newTodoItemEvent)="updateTodoState($event)"
-        (updateLabelEvent)="updateTodoLabel($event)"
-      >
+    <div *ngFor="let todo of todoService.getTodos()">
+      <todo-item [todo]="todo" (updateLabelEvent)="updateTodo($event)">
       </todo-item>
     </div>
   </div>
 
-  <div>
-    <label name="label">
-      New task
+  <form #f="ngForm" [formGroup]="form" (ngSubmit)="addTodo()">
+    Todo Label
+    <input
+      type="text"
+      formControlName="label"
+      [class.invalid]="
+        form.get('label').invalid &&
+        (form.get('label').dirty || form.get('label').touched)
+      "
+    /><br />
+    <div class="input-field col s12">
+      <i class="material-icons prefix">location_on</i>
       <input
         type="text"
-        [(ngModel)]="textInput"
-        name="label"
-        (keyup.enter)="addTodo()"
+        id="autocomplete-input"
+        class="autocomplete"
+        formControlName="city"
+        autocomplete="off"
       />
-    </label>
-
-    <button
-      class="btn waves-effect waves-light"
-      type="submit"
-      name="action"
-      (click)="addTodo()"
-    >
-      Submit
-      <i class="material-icons right">send</i>
-    </button>
-  </div>
+      <label for="autocomplete-input">Location</label>
+    </div>
+    <div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+  </form>
 </div>
