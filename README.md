@@ -7,15 +7,13 @@ Voir sur StackBlitz [:globe_with_meridians:](https://stackblitz.com/edit/angular
 | TP       |      Axe    | Enoncé | Cours
 |:----|:-------------|---------|----------|
 | 0  | Typescript | [:page_with_curl:][tp0e] | [:notebook:][tp0c]
-| 1  | introduction à Angular et ses composants | [:page_with_curl:][tp1e] | [:notebook:][tp1c]
-| 2  | communication père/fils   | [:page_with_curl:][tp2e] | [:notebook:][tp2c]
+| 1  | Introduction à Angular et ses composants | [:page_with_curl:][tp1e] | [:notebook:][tp1c]
+| 2  | Communication père/fils   | [:page_with_curl:][tp2e] | [:notebook:][tp2c]
 | 3  | services & pipes | [:page_with_curl:][tp3e] | [:notebook:][tp3c]
-| 4  | programmation réactive (Observable/Observer) | [:page_with_curl:][tp4e] | [:notebook:][tp4c]
-| 5  | formulaires | [:page_with_curl:][tp5e] | [:notebook:][tp5c]
-| allocine | mise en pratique de toutes les notions | [:page_with_curl:][tpae] |
-| 6  | routing | [:page_with_curl:][tp6e] | [:notebook:][tp6c]
-
-<a href="https://google.com" target="_blank">test</a>
+| 4  | Programmation réactive (Observable/Observer) | [:page_with_curl:][tp4e] | [:notebook:][tp4c]
+| 5  | Formulaires | [:page_with_curl:][tp5e] | [:notebook:][tp5c]
+| allocine | Mise en pratique de toutes les notions | [:page_with_curl:][tpae] |
+| 6  | Routing | [:page_with_curl:][tp6e] | [:notebook:][tp6c]
 
 [tp0e]:https://docs.google.com/document/d/1UGcFKgwSboGVeX2ew8i4qVYwUXexZOpIJ59UE-2qAkA/edit?usp=sharing
 [tp0c]:https://docs.google.com/presentation/d/1to5cW844E9jOlWApqI6Gmw7S_ocoprBH9o6N7ic6k8g/edit?usp=sharing
