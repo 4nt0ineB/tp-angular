@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-app',
-  templateUrl: 'app.component.html',
+  selector: 'app',
+  template: '<app-main></app-main>',
 })
 export class AppComponent {}

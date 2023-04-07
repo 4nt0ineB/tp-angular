@@ -1,3 +1,3 @@
-# angular-tp6
+# angular-tp-allocine
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ahoeyr)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ae8epy)

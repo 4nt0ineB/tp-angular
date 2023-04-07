@@ -1,0 +1,60 @@
+<div class="col s12 m6">
+  <div class="card moviecardcontent" (click)="triggerModal()">
+    <div class="card-image">
+      <img src="{{ movie.Poster }}" loading="lazy" class="poster" />
+    </div>
+    <div class="card-content">
+      <p>
+        {{ movie.Title }}
+        ({{ movie.Year }})
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal{{ movie.imdbID }}" class="modal">
+  <div class="modal-content">
+    <h4>
+      {{ movie.Title }}
+      <span style="color: #e0e0e0;" class="right">{{ movie.Year }}</span>
+    </h4>
+    <p>{{ detail?.Plot }}</p>
+    <br />
+
+    <div style="text-align: left;">
+      <p>
+        <b>Genre</b>
+        <span class="alignright">{{ detail?.Genre }}</span>
+      </p>
+    </div>
+    <div style="text-align: left;">
+      <p>
+        <b>Director</b>
+        <span class="alignright">{{ detail?.Director }}</span>
+      </p>
+    </div>
+    <div style="text-align: center;">
+      <a
+        href="https://www.imdb.com/title/{{ movie.imdbID }}"
+        class="waves-effect waves-light btn"
+        target="_blank"
+        >Voir sur IMDB</a
+      >
+    </div>
+  </div>
+  <br />
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+<!-- <br />
+<div>
+  <p class="alignleft">Director</p>
+  <p class="alignright">{{ detail?.Director }}</p>
+  <br />
+</div>
+<div>
+  <p class="center">Raitings</p>
+</div> -->
