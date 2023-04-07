@@ -4,7 +4,7 @@ import { Todo } from './model/todo';
 import { catchError, from, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TodoService {
   private TodoUrl =
     'https://europe-west1-cours-angular-263913.cloudfunctions.net/todoapp/todo';

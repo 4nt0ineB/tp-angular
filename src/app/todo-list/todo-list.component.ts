@@ -1,24 +1,17 @@
 declare var M: any;
-import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Todo } from './model/todo';
-import { TodoItemComponent } from './todo-item/todo-item.component';
-import { TodoService } from './todo.service';
-import { HttpClientModule } from '@angular/common/http';
+import { Todo } from '../model/todo';
+
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
-  imports: [CommonModule, FormsModule, TodoItemComponent, HttpClientModule],
-  providers: [TodoService],
-  standalone: true,
 })
 export class TodoListComponent implements OnInit {
-  public textInput: string;
   todos: Todo[] = [];
-  loaded: boolean = true;
+  loaded: boolean = false;
 
   constructor(public todoService: TodoService) {
     this.todoService = todoService;
@@ -33,12 +26,11 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  addTodo(): void {
-    if (!this.textInput) return;
-    this.todoService.createTodo(this.textInput).subscribe((response) => {
+  addTodo(label: string): void {
+    if (!label) return;
+    this.todoService.createTodo(label).subscribe((response) => {
       if (response) {
-        M.toast({ html: "La tâche '" + this.textInput + "' à été ajouté" });
-        this.textInput = '';
+        M.toast({ html: "La tâche '" + label + "' à été ajouté" });
         this.getTodos();
       }
     });

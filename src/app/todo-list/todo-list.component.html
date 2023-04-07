@@ -1,26 +1,11 @@
-<div class="container" *ngIf="loaded; else notLoaded" style="pading: 5em;">
-  <div class="row" style="text-align: center; margin: 2em;">
-    <label name="label">
-      New task
-      <input
-        type="text"
-        [(ngModel)]="textInput"
-        name="label"
-        (keyup.enter)="addTodo()"
-      />
-      <button
-        class="btn waves-effect waves-light"
-        type="submit"
-        name="action"
-        (click)="addTodo()"
-        style="margin-bottom: 3em;"
-      >
-        Submit
-        <i class="material-icons right">send</i>
-      </button>
-    </label>
+<div
+  class="container"
+  *ngIf="loaded; else notLoaded"
+  style="padding: 1em; padding-top: 10em;"
+>
+  <div class="row">
+    <todo-form (newLabelEvent)="addTodo($event)"></todo-form>
   </div>
-
   <div class="row">
     <div *ngFor="let todo of todos">
       <todo-item
@@ -31,7 +16,6 @@
     </div>
   </div>
 </div>
-
 <ng-template #notLoaded>
   <div class="container" style="text-align: center; padding: 20%;">
     <p

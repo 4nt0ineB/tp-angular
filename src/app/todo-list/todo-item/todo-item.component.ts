@@ -1,16 +1,17 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CustomDatePipe } from './custom-date.pipe';
-import { Todo } from '../model/todo';
+import {
+  Component,
+  NgModule,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { Todo } from '../../model/todo';
 
 @Component({
   selector: 'todo-item',
   templateUrl: './todo-item.component.html',
   styleUrls: ['./todo-item.component.css'],
-  imports: [CommonModule, FormsModule],
-  providers: [CustomDatePipe],
-  standalone: true,
 })
 export class TodoItemComponent implements OnInit {
   /**
@@ -18,9 +19,7 @@ export class TodoItemComponent implements OnInit {
    */
   public editMode: boolean = false;
 
-  constructor(public customDate: CustomDatePipe) {
-    this.customDate = customDate;
-  }
+  constructor() {}
 
   @Input()
   todo: Todo;

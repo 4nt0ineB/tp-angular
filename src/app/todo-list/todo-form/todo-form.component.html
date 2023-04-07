@@ -1,0 +1,52 @@
+<div class="row" style="text-align: center; margin: 2em;">
+  <form #f="ngForm" (ngSubmit)="submit(f)" (keydown.enter)="submit(f)">
+    <div class="row" style="text-align: center; margin: 2em;">
+      <div class="input-field">
+        <label for="label">Label</label>
+
+        <input
+          id="label"
+          type="text"
+          name="label"
+          minlength="4"
+          maxlength="20"
+          pattern="^[a-zA-Z0-9àáâäãåèéêëìíîïòóôöõùúûüýÿ\s]*$"
+          #vlabel="ngModel"
+          required
+          autocomplete="off"
+          [(ngModel)]="label"
+          [ngClass]="{ invalid: vlabel.dirty && vlabel.invalid }"
+        />
+        <p
+          class="right"
+          style="color: grey; font-size: 0.8em;"
+          [style.color]="vlabel.dirty && vlabel.invalid ? 'red' : 'grey'"
+        >
+          {{ !vlabel.dirty ? 0 : vlabel.value.length }}/20
+        </p>
+      </div>
+
+      <div
+        *ngIf="vlabel.dirty && vlabel.invalid"
+        style="color: red; text-align:left"
+      >
+        <div *ngIf="vlabel.errors.required">Champs requis</div>
+        <div *ngIf="vlabel.errors.pattern">
+          Le label ne doit contenir que des caractères alphanumériques
+        </div>
+        <div *ngIf="vlabel.errors.minlength">Label trop petit</div>
+      </div>
+    </div>
+
+    <button
+      class="btn waves-effect waves-light"
+      type="submit"
+      name="action"
+      style="margin-bottom: 3em;"
+      [disabled]="f.invalid"
+    >
+      Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </form>
+</div>
