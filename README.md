@@ -15,6 +15,7 @@ Voir sur StackBlitz [:globe_with_meridians:](https://stackblitz.com/edit/angular
 | allocine | mise en pratique de toutes les notions | [:page_with_curl:][tpae] |
 | 6  | routing | [:page_with_curl:][tp6e] | [:notebook:][tp6c]
 
+<a href="https://google.com" target="_blank">test</a>
 
 [tp0e]:https://docs.google.com/document/d/1UGcFKgwSboGVeX2ew8i4qVYwUXexZOpIJ59UE-2qAkA/edit?usp=sharing
 [tp0c]:https://docs.google.com/presentation/d/1to5cW844E9jOlWApqI6Gmw7S_ocoprBH9o6N7ic6k8g/edit?usp=sharing
